@@ -1,6 +1,10 @@
 const chunk = (array, size = 1) => {
   let outArray = []
 
+  if (size <= 0) {
+    return outArray
+  }
+
   let startIndex = 0
   let subArray = array.slice(startIndex, startIndex + size)
 
@@ -12,7 +16,6 @@ const chunk = (array, size = 1) => {
   return outArray
 }
 
-
 export {
-  chunk
+  chunk,
 }
