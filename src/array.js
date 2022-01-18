@@ -16,6 +16,11 @@ const chunk = (array, size = 1) => {
   return outArray
 }
 
+const compact = (array) => {
+  return array.filter(el => !!el)
+}
+
 export {
   chunk,
+  compact
 }
