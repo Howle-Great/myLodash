@@ -20,7 +20,27 @@ const compact = (array) => {
   return array.filter(el => !!el)
 }
 
+const concat = (...array) => {
+  let base = array.shift()
+
+  if (!Array.isArray(base)) {
+    base = [base]
+  }
+
+  array.reduce((prev, elem) => {
+    if (Array.isArray(elem)) {
+      prev.push(...elem)
+    } else {
+      prev.push(elem)
+    }
+    return prev
+  }, base)
+
+  return base
+}
+
 export {
   chunk,
-  compact
+  compact,
+  concat
 }

@@ -3,7 +3,8 @@ expect.extend(matchers);
 
 import {
   chunk,
-  compact
+  compact,
+  concat
 } from '../src/array.js'
 
 describe('chunk()', () => {
@@ -55,5 +56,26 @@ describe('compact()', () => {
 
   test('Array with all falsey objects', () => {
     expect(compact([0, 1, false, 2, '', 3])).toIncludeSameMembers([1, 2, 3])
+  })
+})
+
+describe('concat()', () => {
+  test('Simple array', () => {
+    expect(concat([1], [2])).toIncludeSameMembers([1, 2])
+  })
+  test('Array with numbers', () => {
+    expect(concat([1, 2], 3, [4], 2)).toIncludeSameMembers([1, 2, 3, 4, 2])
+  })
+  
+  test('Array with numbers and first number argument', () => {
+    expect(concat(1, [2], 3, [4], 2)).toIncludeSameMembers([1, 2, 3, 4, 2])
+  })
+  
+  test('Array with numbers and string', () => {
+    expect(concat(1, [2], '3', [4], 2)).toIncludeSameMembers([1, 2, '3', 4, 2])
+  })
+  
+  test('Array with numbers, string and object', () => {
+    expect(concat(1, [2], '3', [4], 2, {33: 34, fd: 'ss'})).toIncludeSameMembers([1, 2, '3', 4, 2, {33: 34, fd: 'ss'}])
   })
 })
